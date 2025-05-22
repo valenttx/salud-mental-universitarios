@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>La Salud Mental en los Universitarios</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0 20px;
+            background: linear-gradient(to bottom right, #D8B4F8, #40E0D0);
+            color: #333;
+        }
+
+        nav {
+            background-color: #40E0D0;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 25px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.8em;
+            margin-top: 50px;
+            color: #5B2C6F;
+            text-shadow: 1px 1px 3px #aaa;
+        }
+
+        .intro {
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: rgba(255, 255, 255, 0.92);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-size: 1.1em;
+            line-height: 1.7;
+        }
+
+        /* CARRUSEL */
+        .carousel-container {
+            max-width: 800px;
+            margin: 40px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            background-color: white;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .carousel img {
+            min-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .carousel-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 10px;
+        }
+
+        .carousel-buttons button {
+            background-color: rgba(91, 44, 111, 0.8);
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .carousel-buttons button:hover {
+            background-color: rgba(91, 44, 111, 1);
+        }
+
+        /* TIPS */
+        .tips-section {
+            max-width: 1000px;
+            margin: 50px auto;
+            text-align: center;
+            color: #fff;
+        }
+
+        .tips-section h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #5B2C6F;
+            background-color: rgba(255, 255, 255, 0.7);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 20px;
+        }
+
+        .tips-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .tip-card {
+            background: linear-gradient(to bottom right, #5B2C6F, #40E0D0);
+            border-radius: 15px;
+            padding: 20px;
+            width: 280px;
+            text-align: left;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tip-card h3 {
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+
+        .tip-card p {
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="contactos.html">Contactos</a>
+        <a href="encuesta.html">Encuesta</a>
+    </nav>
+
+    <!-- TÍTULO -->
+    <h1>LA SALUD MENTAL EN LOS UNIVERSITARIOS</h1>
+
+    <!-- INTRODUCCIÓN -->
+    <div class="intro">
+        <p>
+            La vida universitaria es una etapa llena de aprendizajes, descubrimientos y crecimiento personal. Sin embargo, también puede convertirse en una fuente de estrés, ansiedad y presión constante. Las exigencias académicas, las responsabilidades personales, los cambios en el entorno social y la incertidumbre sobre el futuro son factores que, en conjunto, pueden afectar significativamente la salud mental de los estudiantes universitarios.
+        </p>
+    
+        <p>
+            En esta página encontrarás información, recursos y estrategias para comprender mejor los desafíos emocionales que enfrentan los universitarios, así como herramientas prácticas para fortalecer tu bienestar mental y emocional. Porque hablar de salud mental no es un signo de debilidad, sino un acto de valentía y cuidado personal.
+        </p>
+    </div>
+
+    <!-- CARRUSEL DE IMÁGENES -->
+    <div class="carousel-container">
+        <div class="carousel">
+            <img src="https://sanatoriodelparque.com.ar/wp-content/uploads/2023/07/24_Autocuidado.jpg" alt="Autocuidado y descanso">
+            <img src="https://st.depositphotos.com/1017986/3483/i/450/depositphotos_34831295-stock-photo-group-of-students-or-teenagers.jpg" alt="Hablar con alguien">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjh08iYLNGtHLQn-KOS70CfZbvP82TU272aCrmZePtg7qT5-tXdVTN3_3NLchjywnX9lRuXI6li9SjsXGHaMQv_fHlxJRtGJzFUjZM_rbXoL5HBRtsXRaoo0cvLYgPdD7RPHhJ8fYQGQ14/s1600/Cuando+asistir+al+psicologo+monterrey.jpg" alt="Buscar ayuda">
+        </div>
+        <div class="carousel-buttons">
+            <button onclick="prevSlide()">❮</button>
+            <button onclick="nextSlide()">❯</button>
+        </div>
+    </div>
+
+    <!-- SECCIÓN DE TIPS -->
+    <section class="tips-section">
+        <h2>💡 Tips para mejorar tu salud mental en la universidad</h2>
+        <div class="tips-container">
+            <div class="tip-card">
+                <h3>🧠 Conócete a ti mismo</h3>
+                <p>Reconoce tus emociones y date permiso para sentir. Entenderte es el primer paso para cuidarte.</p>
+            </div>
+            <div class="tip-card">
+                <h3>📅 Organiza tu tiempo</h3>
+                <p>Un buen plan de estudio y descanso reduce el estrés y mejora tu rendimiento.</p>
+            </div>
+            <div class="tip-card">
+                <h3>🗣️ Habla con alguien</h3>
+                <p>No guardes todo para ti. Hablar con amigos, familiares o un profesional hace la diferencia.</p>
+            </div>
+            <div class="tip-card">
+                <h3>🌿 Haz pausas y respira</h3>
+                <p>Tomarte 5 minutos para respirar, caminar o desconectarte puede renovar tu energía mental.</p>
+            </div>
+            <div class="tip-card">
+                <h3>💤 Prioriza tu descanso</h3>
+                <p>Dormir bien es esencial para pensar con claridad, memorizar y regular tus emociones.</p>
+            </div>
+            <div class="tip-card">
+                <h3>📱 Controla tu uso de redes</h3>
+                <p>Recuerda que no todo lo que ves en línea es real. Cuida tu bienestar digital.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCRIPT DEL CARRUSEL -->
+    <script>
+        const carousel = document.querySelector('.carousel');
+        const images = document.querySelectorAll('.carousel img');
+        let index = 0;
+
+        function showSlide(i) {
+            index = (i + images.length) % images.length;
+            carousel.style.transform = `translateX(${-index * 100}%)`;
+        }
+
+        function nextSlide() {
+            showSlide(index + 1);
+        }
+
+        function prevSlide() {
+            showSlide(index - 1);
+        }
+
+        setInterval(() => {
+            nextSlide();
+        }, 5000);
+    </script>
+
+</body>
+</html>

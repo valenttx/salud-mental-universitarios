@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Encuesta de Salud Mental</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0 20px;
+            background: linear-gradient(to bottom right, #D8B4F8, #40E0D0);
+            color: #333;
+        }
+        nav {
+            background-color: #40E0D0;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 25px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            text-align: center;
+            color: #5B2C6F;
+            font-size: 2.5em;
+            margin-top: 40px;
+            text-shadow: 1px 1px 3px #aaa;
+        }
+        .question, .final-form {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 700px;
+        }
+        .question p {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .options label {
+            display: block;
+            margin: 10px 0;
+        }
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #5B2C6F;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 1em;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #bbb;
+            cursor: not-allowed;
+        }
+        .final-form label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        .final-form input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+        .final-form h2 {
+            text-align: center;
+            color: #5B2C6F;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="contactos.html">Contactos</a>
+        <a href="encuesta.html">Encuesta</a>
+    </nav>
+
+    <h1>Encuesta sobre Salud Mental</h1>
+
+    <form id="surveyForm">
+        <div class="buttons">
+            <button type="button" id="prevBtn" disabled>Anterior</button>
+            <button type="button" id="nextBtn">Siguiente</button>
+        </div>
+
+        <div class="final-form" id="finalForm">
+            <h2>Datos personales</h2>
+
+            <label for="nombre">Nombre completo:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" pattern="[0-9]{7,15}" required>
+
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" min="16" max="120" required>
+
+            <label for="carrera">Carrera:</label>
+            <input type="text" id="carrera" name="carrera" required>
+
+            <button type="submit">Enviar encuesta</button>
+        </div>
+    </form>
+
+    <script>
+        const questions = [
+            {
+                question: "Cuando te sientes abrumado/a, ¿qué tan difícil te resulta identificar y expresar lo que estás sintiendo?",
+                options: ["Muy fácil", "Fácil", "Difícil", "Muy difícil", "Prefiero no responder"]
+            },
+            {
+                question: "¿Con qué frecuencia sientes que las expectativas académicas o familiares influyen en tu estado emocional?",
+                options: ["Nunca", "Rara vez", "A veces", "Frecuentemente", "Siempre"]
+            },
+            {
+                question: "¿En qué medida crees que el ambiente social dentro de la universidad afecta tu salud mental?",
+                options: ["No afecta en nada", "Afecta poco", "Afecta moderadamente", "Afecta mucho", "Afecta completamente"]
+            },
+            {
+                question: "Cuando experimentas síntomas de ansiedad o depresión, ¿qué tan probable es que intentes manejarlos sin pedir ayuda a nadie?",
+                options: ["Muy improbable", "Poco probable", "Neutral", "Probable", "Muy probable"]
+            },
+            {
+                question: "¿Cómo percibes el impacto de las redes sociales en tu bienestar emocional durante tu vida universitaria?",
+                options: ["Muy positivo", "Algo positivo", "Neutral", "Algo negativo", "Muy negativo"]
+            }
+        ];
+
+        const surveyForm = document.getElementById('surveyForm');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const finalForm = document.getElementById('finalForm');
+
+        let currentQuestion = 0;
+
+        function showQuestion(index) {
+            document.querySelectorAll('.question').forEach(el => el.remove());
+
+            if (index < questions.length) {
+                const q = questions[index];
+                const div = document.createElement('div');
+                div.classList.add('question', 'active');
+
+                const p = document.createElement('p');
+                p.textContent = q.question;
+                div.appendChild(p);
+
+                const optionsDiv = document.createElement('div');
+                optionsDiv.classList.add('options');
+                q.options.forEach(opt => {
+                    const label = document.createElement('label');
+                    const input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = 'question' + index;
+                    input.value = opt;
+                    input.required = true;
+                    label.appendChild(input);
+                    label.appendChild(document.createTextNode(' ' + opt));
+                    optionsDiv.appendChild(label);
+                });
+                div.appendChild(optionsDiv);
+
+                surveyForm.insertBefore(div, surveyForm.querySelector('.buttons'));
+
+                prevBtn.disabled = index === 0;
+                nextBtn.style.display = "inline-block";
+                finalForm.style.display = "none";
+            } else {
+                document.querySelectorAll('.question').forEach(el => el.remove());
+                finalForm.style.display = "block";
+                nextBtn.style.display = "none";
+            }
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const inputs = document.querySelectorAll('input[name="question' + currentQuestion + '"]');
+            const answered = Array.from(inputs).some(input => input.checked);
+            if (!answered) {
+                alert("Por favor, selecciona una opción para continuar.");
+                return;
+            }
+            currentQuestion++;
+            showQuestion(currentQuestion);
+        });
+
+        surveyForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert("¡Gracias por completar la encuesta!");
+            surveyForm.reset();
+            currentQuestion = 0;
+            showQuestion(currentQuestion);
+        });
+
+        showQuestion(currentQuestion);
+    </script>
+</body>
+</html>
